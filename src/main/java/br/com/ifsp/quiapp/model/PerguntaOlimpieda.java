@@ -1,4 +1,4 @@
-package br.edu.ifsp.javafx.aulas.model;
+package br.com.ifsp.quiapp.model;
 
 // precisa fazer; metodo de adicionar pergunta
 

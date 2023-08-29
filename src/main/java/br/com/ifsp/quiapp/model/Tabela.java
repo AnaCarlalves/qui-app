@@ -1,10 +1,10 @@
-package br.edu.ifsp.javafx.aulas;
+package br.com.ifsp.quiapp.model;
 
 import java.util.ArrayList;
 
-import br.edu.ifsp.javafx.aulas.model.PerguntaVestibular;
-import br.edu.ifsp.javafx.aulas.model.Perguntas;
-import br.edu.ifsp.javafx.aulas.model.Usuario;
+import br.com.ifsp.quiapp.model.PerguntaVestibular;
+import br.com.ifsp.quiapp.model.Perguntas;
+import br.com.ifsp.quiapp.model.Usuario;
 
 public class Tabela {
     private ArrayList<Usuario> bancoUsuarios;

@@ -1,8 +1,8 @@
-package br.edu.ifsp.javafx.aulas.model;
+package br.com.ifsp.quiapp.model;
 
 import java.util.ArrayList;
 
-import br.edu.ifsp.javafx.aulas.Tabela;
+import br.com.ifsp.quiapp.model.Tabela;
 
 public class PerguntaVestibularDAO {
 
