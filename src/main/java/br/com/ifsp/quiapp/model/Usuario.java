@@ -6,6 +6,7 @@ public class Usuario  implements Historico{
     private String nome;
     private int acertosTotais;
     private int errosTotais;
+    private String tipo;
     private ArrayList<Jogadas> jogadasDoUsuario = new ArrayList<>();
 
     public Usuario() {
@@ -24,6 +25,24 @@ public class Usuario  implements Historico{
         this.nome = nome;
         this.acertosTotais = acertosTotais;
         this.errosTotais = errosTotais;
+    }
+
+    
+    public Usuario(String nome, String tipo) {
+        this.nome = nome;
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        if (tipo != null) {
+            return tipo;
+        } else {
+            return "";
+        }    
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNome() {
@@ -75,4 +94,11 @@ public class Usuario  implements Historico{
             System.out.println("jogada: "+i+" || "+"numero de acertos: "+jogadasDoUsuario.get(i).getNumAcertosJogada()+" || "+"numero de erros: "+jogadasDoUsuario.get(i).getNumErroJogada());
         }        
     }
+
+    @Override
+    public void deletarHistorico() {
+        // jogadasDoUsuario.remove(idUsuarios);        
+        jogadasDoUsuario = new ArrayList<>(); 
+    }
+
 }

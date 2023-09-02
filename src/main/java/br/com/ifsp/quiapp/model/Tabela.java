@@ -7,7 +7,7 @@ import br.com.ifsp.quiapp.model.Perguntas;
 import br.com.ifsp.quiapp.model.Usuario;
 
 public class Tabela {
-    private ArrayList<Usuario> bancoUsuarios;
+    private static ArrayList<Usuario> bancoUsuarios;
     private ArrayList<Perguntas> bancoPerguntas;
 
     public Tabela() {
@@ -17,8 +17,8 @@ public class Tabela {
 
     
     public void init(){
-        bancoUsuarios.add(new Usuario("Joao"));
-        bancoUsuarios.add(new Usuario("Joao"));
+        bancoUsuarios.add(new Usuario("Joao","aluno"));
+        bancoUsuarios.add(new Usuario("Joao","aluno"));
         bancoUsuarios.add(new Usuario("Joao"));
         bancoUsuarios.add(new Usuario("Joao"));
         bancoUsuarios.add(new Usuario("Joao"));
@@ -101,4 +101,8 @@ public class Tabela {
         return bancoPerguntas;
     }
 
+
+    public Usuario recuperarUsuario(int id) {
+        return bancoUsuarios.get(id);
+    }
 }

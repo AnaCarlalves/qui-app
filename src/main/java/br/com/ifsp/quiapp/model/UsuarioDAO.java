@@ -38,11 +38,14 @@ public class UsuarioDAO{
         return db.recuperaDadoUsuario();
     }
 
-public void delete(Usuario deletar) {
-    Tabela db = getConnection();
-    db.removerUsuario(deletar);
-}
+    public void delete(Usuario deletar) {
+        Tabela db = getConnection();
+        db.removerUsuario(deletar);
+    }
 
-
+    public Usuario findById(int id) {
+        Tabela db = getConnection();
+        return db.recuperarUsuario(id);
+    }
 
 }
