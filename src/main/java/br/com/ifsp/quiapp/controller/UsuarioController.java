@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ifsp.quiapp.model.Jogadas;
 import br.com.ifsp.quiapp.model.Tabela;
 import br.com.ifsp.quiapp.model.Usuario;
 import br.com.ifsp.quiapp.model.UsuarioDAO;
@@ -47,8 +50,6 @@ Método listaDeAlunosCadastrados */
         }
         return listaAluno;
     }
-}
-
 /*
 Este método é mapeado para a rota /api/quiapp/listaDeAlunosCadastrados e lida com solicitações HTTP do tipo GET. Ele retorna uma lista de objetos Usuario representando alunos cadastrados.
 
@@ -62,3 +63,14 @@ Finalmente, a lista listaAluno contendo todos os alunos é retornada como respos
 Em resumo, o método listaDeAlunosCadastrados recupera todos os usuários do banco de dados, filtra aqueles que são do tipo "aluno" e retorna uma lista contendo esses usuários. Isso é útil para listar todos os alunos cadastrados no sistema. 
 Certifique-se de que a classe UsuarioDAO esteja implementada corretamente para acessar os dados do banco de dados conforme necessário.
  */
+
+    @PostMapping("/api/quiapp/adicionarJogada/{id}")
+    public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable int id){
+       Usuario usu  = UsuarioDAO.getInstance().findById(id);
+       return usu.getJogadasDoUsuario().add(jogadasDoUsuario);
+
+    }
+
+
+}
+
