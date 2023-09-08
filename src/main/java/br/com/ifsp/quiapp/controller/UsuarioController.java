@@ -64,13 +64,5 @@ Em resumo, o método listaDeAlunosCadastrados recupera todos os usuários do ban
 Certifique-se de que a classe UsuarioDAO esteja implementada corretamente para acessar os dados do banco de dados conforme necessário.
  */
 
-    @PostMapping("/api/quiapp/adicionarJogada/{id}")
-    public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable int id){
-       Usuario usu  = UsuarioDAO.getInstance().findById(id);
-       return usu.getJogadasDoUsuario().add(jogadasDoUsuario);
-
-    }
-
-
 }
 
