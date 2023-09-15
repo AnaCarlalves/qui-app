@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class QuiAppApplication {
 
 	public static void main(String[] args) {
+		DatabasePergunta.init();
 		SpringApplication.run(QuiAppApplication.class, args);
 	}
 
