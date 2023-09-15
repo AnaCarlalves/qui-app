@@ -57,17 +57,17 @@ public class Usuario  implements Historico{
         return acertosTotais;
     }
 
-    public void setAcertosTotais(int acertosTotais) {
-        this.acertosTotais = acertosTotais;
-    }
+    // public void setAcertosTotais(int acertosTotais) {
+    //     this.acertosTotais = acertosTotais;
+    // }
 
     public int getErrosTotais() {
         return errosTotais;
     }
 
-    public void setErrosTotais(int errosTotais) {
-        this.errosTotais = errosTotais;
-    }
+    // public void setErrosTotais(int errosTotais) {
+    //     this.errosTotais = errosTotais;
+    // }
 
     public ArrayList<Jogadas> getJogadasDoUsuario() {
         return jogadasDoUsuario;
@@ -75,6 +75,17 @@ public class Usuario  implements Historico{
 
     public void setJogadasDoUsuario(ArrayList<Jogadas> jogadasDoUsuario) {
         this.jogadasDoUsuario = jogadasDoUsuario;
+         int acertos =0;
+         int erros =0;
+
+        for (int i = 0; i< jogadasDoUsuario.size(); i++){
+            acertos = acertos + jogadasDoUsuario.get(i).getNumAcertosJogada();
+            erros = erros + jogadasDoUsuario.get(i).getNumErroJogada();
+
+        }
+
+        this.acertosTotais = acertos;
+        this.errosTotais = erros;
     }
 
 
@@ -99,6 +110,26 @@ public class Usuario  implements Historico{
     public void deletarHistorico() {
         // jogadasDoUsuario.remove(idUsuarios);        
         jogadasDoUsuario = new ArrayList<>(); 
+    }
+
+    public Boolean deletarJogada(int numJogada){
+        if(numJogada >= jogadasDoUsuario.size() || numJogada < 0){
+            return false;
+        }
+        else{
+            jogadasDoUsuario.remove(numJogada);
+            
+            if(jogadasDoUsuario.isEmpty() == true){
+                this.acertosTotais =0;
+                this.errosTotais =0;
+            }
+            else{
+                this.acertosTotais = this.acertosTotais - jogadasDoUsuario.get(numJogada).getNumAcertosJogada();
+                this.errosTotais = this.errosTotais - jogadasDoUsuario.get(numJogada).getNumErroJogada();
+            }
+
+            return true;
+        }
     }
 
 }

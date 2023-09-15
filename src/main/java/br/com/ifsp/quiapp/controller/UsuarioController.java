@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.ifsp.quiapp.DataBase;
+import br.com.ifsp.quiapp.Tabela;
 import br.com.ifsp.quiapp.model.Jogadas;
-import br.com.ifsp.quiapp.model.Tabela;
 import br.com.ifsp.quiapp.model.Usuario;
 import br.com.ifsp.quiapp.model.UsuarioDAO;
 
@@ -22,12 +21,12 @@ import br.com.ifsp.quiapp.model.UsuarioDAO;
 public class UsuarioController {
     @PostMapping("/api/quiapp/cadastro/cadastroProfessora")
     public void addProfessora(@RequestBody Usuario novo){
-        DataBase.addUsuario(novo);
+        Tabela.addUsuario(novo);
     }
 
     @DeleteMapping("/api/quiapp/delete")
     public ResponseEntity<String> delCadastroUsuario(@RequestBody Usuario usuario){
-        DataBase.removerUsuario(usuario);
+        Tabela.removerUsuario(usuario);
         return ResponseEntity.ok("O Usuario foi deletado do sistema com sucesso");
     }
 
@@ -74,6 +73,24 @@ Finalmente, a lista listaAluno contendo todos os alunos é retornada como respos
 Em resumo, o método listaDeAlunosCadastrados recupera todos os usuários do banco de dados, filtra aqueles que são do tipo "aluno" e retorna uma lista contendo esses usuários. Isso é útil para listar todos os alunos cadastrados no sistema. 
 Certifique-se de que a classe UsuarioDAO esteja implementada corretamente para acessar os dados do banco de dados conforme necessário.
  */
+
+ @GetMapping("/api/quiapp/RecuperarUsuario/{id}")
+
+ public Usuario recuperaUsuario(@PathVariable int id){
+
+     Usuario usuario = UsuarioDAO.getInstance().findById(id);
+     return usuario;
+
+ }
+
+ @PostMapping("/api/quiapp/usuario/criar")
+ public String criarUsuario(@RequestBody Usuario usuario){
+     
+     UsuarioDAO.getInstance().create(usuario);
+
+     return "usuario adicionado com sucesso.";
+ 
+ }
 
 }
 
