@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ifsp.quiapp.DataBase;
 import br.com.ifsp.quiapp.model.Jogadas;
 import br.com.ifsp.quiapp.model.Tabela;
 import br.com.ifsp.quiapp.model.Usuario;
@@ -19,6 +20,16 @@ import br.com.ifsp.quiapp.model.UsuarioDAO;
 
 @RestController
 public class UsuarioController {
+    @PostMapping("/api/quiapp/cadastro/cadastroProfessora")
+    public void addProfessora(@RequestBody Usuario novo){
+        DataBase.addUsuario(novo);
+    }
+
+    @DeleteMapping("/api/quiapp/delete")
+    public ResponseEntity<String> delCadastroUsuario(@RequestBody Usuario usuario){
+        DataBase.removerUsuario(usuario);
+        return ResponseEntity.ok("O Usuario foi deletado do sistema com sucesso");
+    }
 
     @DeleteMapping("/api/quiapp/deletarHistorico/{id}")
     public  ResponseEntity<String> deletarHistorico(@PathVariable int id){
