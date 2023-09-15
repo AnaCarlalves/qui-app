@@ -1,1 +1,1 @@
-!(Da 10 professor)[imagens tabela/imagem1.png]
+![Da 10 professor](imagens tabela/imagem1.png)
