@@ -1,5 +1,7 @@
 package br.com.ifsp.quiapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,14 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.ifsp.quiapp.model.Jogadas;
 import br.com.ifsp.quiapp.model.Usuario;
 import br.com.ifsp.quiapp.model.UsuarioDAO;
+import br.com.ifsp.quiapp.repository.JogadasRepository;
 
 @RestController
+@CrossOrigin
 public class JogadasController {
+
+    @Autowired
+    JogadasRepository jogadasRepository;
 
     @PostMapping("/api/quiapp/adicionarJogada/{id}")
     public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable int id){
        Usuario usu  = UsuarioDAO.getInstance().findById(id);
-       return usu.getJogadasDoUsuario().add(jogadasDoUsuario);
+    //    return usu.getJogadasDoUsuario().add(jogadasDoUsuario);
+    return true;
 
     }
 
@@ -25,14 +33,14 @@ public class JogadasController {
 
         Usuario usuario = UsuarioDAO.getInstance().findById(idUsuario);
 
-        Boolean resposta = usuario.deletarJogada(numJogada);
+        // Boolean resposta = usuario.deletarJogada(numJogada);
 
-        if( resposta == true){
-        return "------------ jogada excluida ------------\nnúmero da jogada: "+numJogada+"\nnumero de acertos: "+usuario.getJogadasDoUsuario().get(numJogada).getNumAcertosJogada()+"\nnúmero de erros: "+usuario.getJogadasDoUsuario().get(numJogada).getNumErroJogada();
+        // if( resposta == true){
+        // return "------------ jogada excluida ------------\nnúmero da jogada: "+numJogada+"\nnumero de acertos: "+usuario.getJogadasDoUsuario().get(numJogada).getNumAcertosJogada()+"\nnúmero de erros: "+usuario.getJogadasDoUsuario().get(numJogada).getNumErroJogada();
         
-        }else{
-             return "------------ jogada não existe ------------";
-        }
-    }
-    
+        // }else{
+        //      return "------------ jogada não existe ------------";
+        // }
+        return "joao dleas"; 
+    }    
 }

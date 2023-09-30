@@ -2,10 +2,10 @@ package br.com.ifsp.quiapp.model;
 
 import java.util.ArrayList;
 
-import br.com.ifsp.quiapp.model.Tabela;
+import br.com.ifsp.quiapp.DatabaseUsuario;
 
 public class UsuarioDAO{
-    private Tabela db;
+    private DatabaseUsuario db;
     private static UsuarioDAO instance;
 
     public UsuarioDAO() {
@@ -19,9 +19,9 @@ public class UsuarioDAO{
     }
 
     // Recupera a conexão com o Banco de Dados
-    private Tabela getConnection(){
+    private DatabaseUsuario getConnection(){
         if(this.db == null){            
-            Tabela db = new Tabela();
+            DatabaseUsuario db = new DatabaseUsuario();
             db.init();
             this.db = db;
         }
@@ -29,22 +29,22 @@ public class UsuarioDAO{
     }
 
     public void create(Usuario novo){
-        Tabela db = getConnection();
+        DatabaseUsuario db = getConnection();
         db.addUsuario(novo);
     }   
 
     public ArrayList<Usuario> read(){
-        Tabela db = getConnection();
+        DatabaseUsuario db = getConnection();
         return db.recuperaDadoUsuario();
     }
 
     public void delete(Usuario deletar) {
-        Tabela db = getConnection();
+        DatabaseUsuario db = getConnection();
         db.removerUsuario(deletar);
     }
 
     public Usuario findById(int id) {
-        Tabela db = getConnection();
+        DatabaseUsuario db = getConnection();
         return db.recuperarUsuario(id);
     }
 

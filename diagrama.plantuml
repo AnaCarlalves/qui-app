@@ -1,0 +1,60 @@
+@startuml diagrama
+
+    interface historico{
+        +<<static>> <<final>> numPerguntaPorRodada: double
+        +jogadasDoUsuario(Jogadas jogadaAtual): void
+        +mostrarDados(): void
+        +deletarHistorico(): void
+    }
+
+    class Jogadas{
+        -numAcertosJogada: int
+        -numErroJogada: int
+        +mostrarPerguntas(DatabasePergunta tabela): void
+    }
+
+    class Pergunta{
+        #codigoPergunta: long
+        #nivelDificuldade: String
+        #pergunta: String
+        #alternativaA: String
+        #alternativaB: String
+        #alternativaC: String
+        #alternativaD: String
+        #respostaCerta: String
+        +addDado(DatabasePergunta databasePerguntas): void
+    }
+
+    class Usuario{
+        -nome: String
+        -acertosTotais: int 
+        -errosTotais: int 
+        -tipo: String
+        -jogadasDoUsuario: ArrayList<Jogadas>
+        +deletarJogada(int numJogada): Boolean
+    }
+
+    class DatabasePergunta{
+        +<<static>> perguntas: ArrayList<Pergunta>
+        +addDadoPerguntas(Pergunta novo): void
+        +<<static>> recuperarDadoPergunta(): ArrayList<Pergunta>
+        +removeDadosPergunta(Pergunta delete): void
+        +<<static>> all(): List<Pergunta>
+    }
+
+    class DatabaseUsuario{
+        -<<static>> bancoUsuario: ArrayList<Usuario>
+        +DatabaseUsuario()
+        +init(): void
+        +<<static>> addUsuario(Usuario novo): void
+        +<<static>> removerUsuario(Usuario usuario): void
+        +recuperaDadoUsuario(): ArrayList<Usuario>
+        +recuperarUsuario(int id): Usuario
+    }
+
+    historico --> Usuario: implementes
+    DatabaseUsuario --> Usuario: possui muito
+    Usuario --> Jogadas: possui muitas
+    Jogadas --> Pergunta: possui muita
+    DatabasePergunta --> Pergunta: possui muita
+@enduml

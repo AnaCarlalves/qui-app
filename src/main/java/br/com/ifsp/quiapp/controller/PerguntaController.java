@@ -2,6 +2,8 @@ package br.com.ifsp.quiapp.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ifsp.quiapp.model.Pergunta;
 import br.com.ifsp.quiapp.model.PerguntaDAO;
+import br.com.ifsp.quiapp.repository.PerguntaRepository;
+import br.com.ifsp.quiapp.repository.UsuarioRepository;
 
 @RestController
+@CrossOrigin
 public class PerguntaController {
+
+    @Autowired
+    PerguntaRepository PerguntaRepository;
     
     //Incerir Perguntas no BDD
     @PostMapping("/app/quiapp/perguntas/inserir")
@@ -27,7 +35,7 @@ public class PerguntaController {
         for (Pergunta perguntaCont : perguntaBancoDados.findAll()) {
             // Roda um for para verificar as listas
             for (Pergunta pergunta : perguntasRecebe) {
-                if (pergunta.getCodigoPergunta() == perguntaCont.getCodigoPergunta()) {
+                if (pergunta.getidPergunta() == perguntaCont.getidPergunta()) {
                     // Um IF para verificar se o código das perguntas já não existe no Banco de Dados
                     existente = true;
                     break;
@@ -66,7 +74,7 @@ public class PerguntaController {
 
         for (Pergunta perguntaCont : perguntaBancoDados.findAll()) {
             // Roda um FOR para verificar as listas
-            if (perguntaCont.getCodigoPergunta() == codigoPergunta) {
+            if (perguntaCont.getidPergunta() == codigoPergunta) {
                 // verifica se o codigo
                 return perguntaCont;
                 // Imprime a pergunta com o codigo pedido
@@ -84,7 +92,7 @@ public class PerguntaController {
 
         for (Pergunta perguntaCont : perguntaBancoDados.findAll()) {
             // Roda um for para verificar as listas
-            if (perguntaCont.getCodigoPergunta() == codigoRelato) {
+            if (perguntaCont.getidPergunta() == codigoRelato) {
                 // Se o codigo da pergunta existir no Banco, irá deletar do Banco de Dados
                 perguntaBancoDados.delete(perguntaCont);
                 break;

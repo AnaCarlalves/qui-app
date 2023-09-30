@@ -1,9 +1,16 @@
 package br.com.ifsp.quiapp.model;
 
-import br.com.ifsp.quiapp.DatabasePergunta;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Pergunta {
-    protected long codigoPergunta;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long idPergunta;
+    protected String nivelDificuldade;
     protected String pergunta;
     protected String alternativaA;
     protected String alternativaB;
@@ -11,13 +18,14 @@ public class Pergunta {
     protected String alternativaD;
     protected String respostaCerta;
 
-    public Pergunta(){
+    public Pergunta() {
 
     }
 
-    public Pergunta(long codigoPergunta, String pergunta, String alternativaA, String alternativaB, String alternativaC,
-            String alternativaD, String respostaCerta) {
-        this.codigoPergunta = codigoPergunta;
+    public Pergunta(long idPergunta, String nivelDificuldade, String pergunta, String alternativaA,
+            String alternativaB, String alternativaC, String alternativaD, String respostaCerta) {
+        this.idPergunta = idPergunta;
+        this.nivelDificuldade = nivelDificuldade;
         this.pergunta = pergunta;
         this.alternativaA = alternativaA;
         this.alternativaB = alternativaB;
@@ -26,16 +34,16 @@ public class Pergunta {
         this.respostaCerta = respostaCerta;
     }
 
-    public void addDado(DatabasePergunta databasePerguntas){
-        databasePerguntas.perguntas.add(this);
+    // public void addDado(DatabasePergunta databasePerguntas){
+    // databasePerguntas.perguntas.add(this);
+    // }
+
+    public Long getidPergunta() {
+        return idPergunta;
     }
 
-    public long getCodigoPergunta() {
-        return codigoPergunta;
-    }
-
-    public void setCodigoPergunta(long codigoPergunta) {
-        this.codigoPergunta = codigoPergunta;
+    public void setidPergunta(Long idPergunta) {
+        this.idPergunta = idPergunta;
     }
 
     public String getPergunta() {
@@ -85,7 +93,13 @@ public class Pergunta {
     public void setRespostaCerta(String respostaCerta) {
         this.respostaCerta = respostaCerta;
     }
-    
-    
-    
+
+    public String getNivelDificuldade() {
+        return nivelDificuldade;
+    }
+
+    public void setNivelDificuldade(String nivelDificuldade) {
+        this.nivelDificuldade = nivelDificuldade;
+    }
+
 }
