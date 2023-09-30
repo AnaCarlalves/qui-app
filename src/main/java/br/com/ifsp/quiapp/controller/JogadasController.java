@@ -12,6 +12,7 @@ import br.com.ifsp.quiapp.model.Jogadas;
 import br.com.ifsp.quiapp.model.Usuario;
 import br.com.ifsp.quiapp.model.UsuarioDAO;
 import br.com.ifsp.quiapp.repository.JogadasRepository;
+import br.com.ifsp.quiapp.repository.UsuarioRepository;
 
 @RestController
 @CrossOrigin
@@ -20,27 +21,18 @@ public class JogadasController {
     @Autowired
     JogadasRepository jogadasRepository;
 
-    @PostMapping("/api/quiapp/adicionarJogada/{id}")
-    public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable int id){
-       Usuario usu  = UsuarioDAO.getInstance().findById(id);
-    //    return usu.getJogadasDoUsuario().add(jogadasDoUsuario);
-    return true;
-
-    }
-
     @DeleteMapping("/api/quiapp/jogada/deletar/{idUsuario}/{numJogada}")
     public String deletarJogada(@PathVariable int idUsuario,@PathVariable int numJogada){
 
         Usuario usuario = UsuarioDAO.getInstance().findById(idUsuario);
 
-        // Boolean resposta = usuario.deletarJogada(numJogada);
+        Boolean resposta = usuario.deletarJogada(numJogada);
 
-        // if( resposta == true){
-        // return "------------ jogada excluida ------------\nnúmero da jogada: "+numJogada+"\nnumero de acertos: "+usuario.getJogadasDoUsuario().get(numJogada).getNumAcertosJogada()+"\nnúmero de erros: "+usuario.getJogadasDoUsuario().get(numJogada).getNumErroJogada();
+        if( resposta == true){
+        return "------------ jogada excluida ------------\nnúmero da jogada: "+numJogada+"\nnumero de acertos: "+usuario.getJogadasDoUsuario().get(numJogada).getNumAcertosJogada()+"\nnúmero de erros: "+usuario.getJogadasDoUsuario().get(numJogada).getNumErroJogada();
         
-        // }else{
-        //      return "------------ jogada não existe ------------";
-        // }
-        return "joao dleas"; 
+        }else{
+             return "------------ jogada não existe ------------";
+        }
     }    
 }

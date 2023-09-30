@@ -80,97 +80,94 @@ public class Usuario  implements Historico{
         return acertosTotais;
     }
 
-    // public void setAcertosTotais(int acertosTotais) {
-    //     this.acertosTotais = acertosTotais;
-    // }
+    public void setAcertosTotais(int acertosTotais) {
+        this.acertosTotais = acertosTotais;
+    }
 
     public int getErrosTotais() {
         return errosTotais;
     }
 
-    @Override
-    public void jogadasDoUsuario(Jogadas jogadaAtual) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'jogadasDoUsuario'");
-    }
-
-    @Override
-    public void mostrarDados() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarDados'");
-    }
-
-    @Override
-    public void deletarHistorico() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletarHistorico'");
-    }
-
-    // public void setErrosTotais(int errosTotais) {
-    //     this.errosTotais = errosTotais;
-    // }
-
-    // public ArrayList<Jogadas> getJogadasDoUsuario() {
-    //     return jogadasDoUsuario;
-    // }
-
-    // public void setJogadasDoUsuario(ArrayList<Jogadas> jogadasDoUsuario) {
-    //     this.jogadasDoUsuario = jogadasDoUsuario;
-    //      int acertos =0;
-    //      int erros =0;
-
-    //     for (int i = 0; i< jogadasDoUsuario.size(); i++){
-    //         acertos = acertos + jogadasDoUsuario.get(i).getNumAcertosJogada();
-    //         erros = erros + jogadasDoUsuario.get(i).getNumErroJogada();
-
-    //     }
-
-    //     this.acertosTotais = acertos;
-    //     this.errosTotais = erros;
-    // }
-
-
-
     // @Override
     // public void jogadasDoUsuario(Jogadas jogadaAtual) {
-    
-    //     acertosTotais = acertosTotais + jogadaAtual.getNumAcertosJogada();
-    //     errosTotais = errosTotais + jogadaAtual.getNumErroJogada();
-
-    //     jogadasDoUsuario.add(jogadaAtual);        
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'jogadasDoUsuario'");
     // }
 
     // @Override
     // public void mostrarDados() {
-    //     for(int i=0; i < jogadasDoUsuario.size();i++){
-    //         System.out.println("jogada: "+i+" || "+"numero de acertos: "+jogadasDoUsuario.get(i).getNumAcertosJogada()+" || "+"numero de erros: "+jogadasDoUsuario.get(i).getNumErroJogada());
-    //     }        
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'mostrarDados'");
     // }
 
     // @Override
     // public void deletarHistorico() {
-    //     // jogadasDoUsuario.remove(idUsuarios);        
-    //     jogadasDoUsuario = new ArrayList<>(); 
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'deletarHistorico'");
     // }
 
-    // public Boolean deletarJogada(int numJogada){
-    //     if(numJogada >= jogadasDoUsuario.size() || numJogada < 0){
-    //         return false;
-    //     }
-    //     else{
-    //         jogadasDoUsuario.remove(numJogada);
+    public void setErrosTotais(int errosTotais) {
+        this.errosTotais = errosTotais;
+    }
+
+    public ArrayList<Jogadas> getJogadasDoUsuario() {
+        return jogadasDoUsuario;
+    }
+
+    public void setJogadasDoUsuario(ArrayList<Jogadas> jogadasDoUsuario) {
+        this.jogadasDoUsuario = jogadasDoUsuario;
+         int acertos =0;
+         int erros =0;
+
+        for (int i = 0; i< jogadasDoUsuario.size(); i++){
+            acertos = acertos + jogadasDoUsuario.get(i).getNumAcertosJogada();
+            erros = erros + jogadasDoUsuario.get(i).getNumErroJogada();
+
+        }
+
+        this.acertosTotais = acertos;
+        this.errosTotais = erros;
+    }
+
+    @Override
+    public void jogadasDoUsuario(Jogadas jogadaAtual) {
+    
+        acertosTotais = acertosTotais + jogadaAtual.getNumAcertosJogada();
+        errosTotais = errosTotais + jogadaAtual.getNumErroJogada();
+
+        jogadasDoUsuario.add(jogadaAtual);        
+    }
+
+    @Override
+    public void mostrarDados() {
+        for(int i=0; i < jogadasDoUsuario.size();i++){
+            System.out.println("jogada: "+i+" || "+"numero de acertos: "+jogadasDoUsuario.get(i).getNumAcertosJogada()+" || "+"numero de erros: "+jogadasDoUsuario.get(i).getNumErroJogada());
+        }        
+    }
+
+    @Override
+    public void deletarHistorico() {
+        this.jogadasDoUsuario.clear();
+    }
+
+    public Boolean deletarJogada(int numJogada){
+        if(numJogada >= jogadasDoUsuario.size() || numJogada < 0){
+            return false;
+        }
+        else{
+            jogadasDoUsuario.remove(numJogada);
             
-    //         if(jogadasDoUsuario.isEmpty() == true){
-    //             this.acertosTotais =0;
-    //             this.errosTotais =0;
-    //         }
-    //         else{
-    //             this.acertosTotais = this.acertosTotais - jogadasDoUsuario.get(numJogada).getNumAcertosJogada();
-    //             this.errosTotais = this.errosTotais - jogadasDoUsuario.get(numJogada).getNumErroJogada();
-    //         }
+            if(jogadasDoUsuario.isEmpty() == true){
+                this.acertosTotais =0;
+                this.errosTotais =0;
+            }
+            else{
+                this.acertosTotais = this.acertosTotais - jogadasDoUsuario.get(numJogada).getNumAcertosJogada();
+                this.errosTotais = this.errosTotais - jogadasDoUsuario.get(numJogada).getNumErroJogada();
+            }
 
-    //         return true;
-    //     }
-    // }
+            return true;
+        }
+    }
 
 }

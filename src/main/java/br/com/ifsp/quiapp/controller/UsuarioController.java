@@ -2,6 +2,7 @@ package br.com.ifsp.quiapp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,36 +42,43 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/api/quiapp/deletarHistorico/{id}")
-    public  ResponseEntity<String> deletarHistorico(@PathVariable int id){
+    public  String deletarHistorico(@PathVariable long id){
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
 
-        Usuario usu = UsuarioDAO.getInstance().findById(id);
-        usu.deletarHistorico();
-
-        return ResponseEntity.ok("O historico do usuaro foi excluido com sucesso");
+        if (optionalUsuario.isPresent()) {
+            Usuario usuario = optionalUsuario.get();
+            usuario.deletarHistorico();
+            usuarioRepository.save(usuario); // Salva as alterações no usuário
+            return ("O historico do usuário foi excluido com sucesso");
+        } else {
+            return ("O usuário com o ID especificado não foi encontrado");
+        }
     }
 
 
     @GetMapping("/api/quiapp/listaDeAlunosCadastrados")
-    public List<Usuario> listaDeAlunosCadastrados(){
-        ArrayList<Usuario> banco = UsuarioDAO.getInstance().read();
-        ArrayList<Usuario> listaAluno = new ArrayList<>();
+    public Iterable<Usuario> listaDeAlunosCadastrados(){
 
-        for(Usuario usuAux : banco){
-            if(usuAux.getTipo().equals("aluno")){
-                listaAluno.add(usuAux);
-            }
-        }
-        return listaAluno;
+        return usuarioRepository.findAll();
+
+
+        // ArrayList<Usuario> banco = UsuarioDAO.getInstance().read();
+        // ArrayList<Usuario> listaAluno = new ArrayList<>();
+
+        // for(Usuario usuAux : banco){
+        //     if(usuAux.getTipo().equals("aluno")){
+        //         listaAluno.add(usuAux);
+        //     }
+        // }
     }
 
- @GetMapping("/api/quiapp/RecuperarUsuario/{id}")
+    @GetMapping("/api/quiapp/RecuperarUsuario/{id}")
+    public Usuario recuperaUsuario(@PathVariable int id){
 
- public Usuario recuperaUsuario(@PathVariable int id){
+        Usuario usuario = UsuarioDAO.getInstance().findById(id);
+        return usuario;
 
-     Usuario usuario = UsuarioDAO.getInstance().findById(id);
-     return usuario;
-
- }
+    }
 
  @PostMapping("/api/quiapp/usuario/criar")
  public String criarUsuario(@RequestBody Usuario usuario){
@@ -81,4 +89,17 @@ public class UsuarioController {
  
  }
 
+    @PostMapping("/api/quiapp/adicionarJogada/{id}")
+    public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable Long id) {
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+
+        if (optionalUsuario.isPresent()) {
+            Usuario usuario = optionalUsuario.get();
+            usuario.getJogadasDoUsuario().add(jogadasDoUsuario);
+            usuarioRepository.save(usuario); // Salva as alterações no usuário
+            return true;
+        } else {
+            return false; // O usuário com o ID especificado não foi encontrado
+        }
+    }
 }
