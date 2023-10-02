@@ -1,6 +1,7 @@
 package br.com.ifsp.quiapp.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Indexed;
 
@@ -13,7 +14,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Usuario  implements Historico{
     @OneToMany(mappedBy = "usuario")
-    private ArrayList<Jogadas> jogadasDoUsuario = new ArrayList<>();
+    private List<Jogadas> jogadasDoUsuario = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -110,9 +111,11 @@ public class Usuario  implements Historico{
         this.errosTotais = errosTotais;
     }
 
-    public ArrayList<Jogadas> getJogadasDoUsuario() {
+    
+    public List<Jogadas> getJogadasDoUsuario() {
         return jogadasDoUsuario;
     }
+    
 
     public void setJogadasDoUsuario(ArrayList<Jogadas> jogadasDoUsuario) {
         this.jogadasDoUsuario = jogadasDoUsuario;
@@ -169,5 +172,6 @@ public class Usuario  implements Historico{
             return true;
         }
     }
+
 
 }

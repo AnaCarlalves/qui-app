@@ -60,16 +60,6 @@ public class UsuarioController {
     public Iterable<Usuario> listaDeAlunosCadastrados(){
 
         return usuarioRepository.findAll();
-
-
-        // ArrayList<Usuario> banco = UsuarioDAO.getInstance().read();
-        // ArrayList<Usuario> listaAluno = new ArrayList<>();
-
-        // for(Usuario usuAux : banco){
-        //     if(usuAux.getTipo().equals("aluno")){
-        //         listaAluno.add(usuAux);
-        //     }
-        // }
     }
 
     @GetMapping("/api/quiapp/RecuperarUsuario/{id}")
@@ -89,8 +79,10 @@ public class UsuarioController {
  
  }
 
+ // no thunderbird esta dando ok, mas não esta adicionado a jogada no banco
     @PostMapping("/api/quiapp/adicionarJogada/{id}")
     public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable Long id) {
+
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
 
         if (optionalUsuario.isPresent()) {
