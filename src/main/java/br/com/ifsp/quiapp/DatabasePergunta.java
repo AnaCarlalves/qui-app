@@ -10,7 +10,7 @@ public class DatabasePergunta {
 
     public static void init(){
         perguntas = new ArrayList<Pergunta>();
-        perguntas.add(new Pergunta(1,"facil", "Qual a fórmula do cloro?", 
+        perguntas.add(new Pergunta("facil", "Qual a fórmula do cloro?", 
         "O2", "H2O", "Cl2", "N2", "Cl2"));
     }
 
