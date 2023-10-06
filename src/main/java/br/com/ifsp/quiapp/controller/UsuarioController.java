@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.protobuf.Internal.LongList;
+
 import br.com.ifsp.quiapp.DatabaseUsuario;
 import br.com.ifsp.quiapp.model.Jogadas;
 import br.com.ifsp.quiapp.model.Usuario;
 import br.com.ifsp.quiapp.model.UsuarioDAO;
+import br.com.ifsp.quiapp.repository.JogadasRepository;
 import br.com.ifsp.quiapp.repository.UsuarioRepository;
 
 @RestController
@@ -27,6 +30,8 @@ public class UsuarioController {
 
     @Autowired
     UsuarioRepository usuarioRepository;
+    @Autowired
+    JogadasRepository jogadasRepository;
     
     
     @PostMapping("/api/quiapp/cadastro/cadastroProfessor")
@@ -63,18 +68,34 @@ public class UsuarioController {
     }
 
     @GetMapping("/api/quiapp/RecuperarUsuario/{id}")
-    public Usuario recuperaUsuario(@PathVariable int id){
+    public Usuario recuperaUsuario(@PathVariable Long id){
 
-        Usuario usuario = UsuarioDAO.getInstance().findById(id);
-        return usuario;
+        // Usuario usuario = UsuarioDAO.getInstance().findById(id);
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
 
+        if(optionalUsuario.isPresent()){
+        return optionalUsuario.get();
+        }
+        else{
+            return null;
+        }
     }
 
  @PostMapping("/api/quiapp/usuario/criar")
  public String criarUsuario(@RequestBody Usuario usuario){
      
-     UsuarioDAO.getInstance().create(usuario);
+     usuarioRepository.save(usuario);
 
+    for(Jogadas jogada : usuario.getJogadasDoUsuario()){
+        if(this.jogadasRepository != null){
+            jogada.setUsuario(usuario);
+            jogadasRepository.save(jogada);
+        }
+        else{
+            System.out.println(" ");
+        }}
+
+        
      return "usuario adicionado com sucesso.";
  
  }
@@ -84,6 +105,7 @@ public class UsuarioController {
     public boolean adicionarJogada(@RequestBody Jogadas jogadasDoUsuario, @PathVariable Long id) {
 
         Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        
 
         if (optionalUsuario.isPresent()) {
             Usuario usuario = optionalUsuario.get();

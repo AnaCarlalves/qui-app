@@ -48,6 +48,26 @@ public class Jogadas {
         this.numErroJogada = numErroJogada;
     }
 
+
+
+    public void setIdUsuarios(Long idUsuarios) {
+    }
+
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    
+
     // public void mostrarPerguntas(DatabasePergunta tabela) {
 
     // }    

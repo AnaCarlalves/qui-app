@@ -153,25 +153,27 @@ public class Usuario  implements Historico{
         this.jogadasDoUsuario.clear();
     }
 
-    public Boolean deletarJogada(int numJogada){
-        if(numJogada >= jogadasDoUsuario.size() || numJogada < 0){
-            return false;
-        }
-        else{
-            jogadasDoUsuario.remove(numJogada);
+    // public Boolean deletarJogada(int numJogada){
+    //     // if(numJogada >= jogadasDoUsuario.size() || numJogada < 0){
+    //     //     return false;
+    //     // }
+    //     // else{
+    //     //     jogadasDoUsuario.remove(numJogada);
             
-            if(jogadasDoUsuario.isEmpty() == true){
-                this.acertosTotais =0;
-                this.errosTotais =0;
-            }
-            else{
-                this.acertosTotais = this.acertosTotais - jogadasDoUsuario.get(numJogada).getNumAcertosJogada();
-                this.errosTotais = this.errosTotais - jogadasDoUsuario.get(numJogada).getNumErroJogada();
-            }
+    //     //     if(jogadasDoUsuario.isEmpty() == true){
+    //     //         this.acertosTotais =0;
+    //     //         this.errosTotais =0;
+    //     //     }
+    //     //     else{
+    //     //         this.acertosTotais = this.acertosTotais - jogadasDoUsuario.get(numJogada).getNumAcertosJogada();
+    //     //         this.errosTotais = this.errosTotais - jogadasDoUsuario.get(numJogada).getNumErroJogada();
+    //     //     }
 
-            return true;
-        }
-    }
+    //     //     return true;
+    //     // }
+
+
+    // }
 
 
 }

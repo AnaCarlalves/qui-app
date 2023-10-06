@@ -22,9 +22,8 @@ public class Pergunta {
 
     }
 
-    public Pergunta(long idPergunta, String nivelDificuldade, String pergunta, String alternativaA,
+    public Pergunta(String nivelDificuldade, String pergunta, String alternativaA,
             String alternativaB, String alternativaC, String alternativaD, String respostaCerta) {
-        this.idPergunta = idPergunta;
         this.nivelDificuldade = nivelDificuldade;
         this.pergunta = pergunta;
         this.alternativaA = alternativaA;
