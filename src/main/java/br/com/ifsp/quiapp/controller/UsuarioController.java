@@ -34,13 +34,14 @@ public class UsuarioController {
     JogadasRepository jogadasRepository;
     
     
+    //botar um 'if' para verificar se é professor
     @PostMapping("/api/quiapp/cadastro/cadastroProfessor")
     public void addProfessor(@RequestBody Usuario novo){
         usuarioRepository.save(novo);
         // DatabaseUsuario.addUsuario(novo);
     }
 
-    @DeleteMapping("/api/quiapp/delete")
+    @DeleteMapping("/api/quiapp/delete/deleteCadastroUsuario")
     public ResponseEntity<String> delCadastroUsuario(@RequestBody Usuario usuario){
         DatabaseUsuario.removerUsuario(usuario);
         return ResponseEntity.ok("O Usuario foi deletado do sistema com sucesso");
