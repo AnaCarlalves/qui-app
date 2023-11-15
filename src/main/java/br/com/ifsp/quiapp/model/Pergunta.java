@@ -33,10 +33,6 @@ public class Pergunta {
         this.respostaCerta = respostaCerta;
     }
 
-    // public void addDado(DatabasePergunta databasePerguntas){
-    // databasePerguntas.perguntas.add(this);
-    // }
-
     public Long getidPergunta() {
         return idPergunta;
     }
@@ -100,5 +96,4 @@ public class Pergunta {
     public void setNivelDificuldade(String nivelDificuldade) {
         this.nivelDificuldade = nivelDificuldade;
     }
-
 }

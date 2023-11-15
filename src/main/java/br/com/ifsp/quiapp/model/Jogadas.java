@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
-
 @Entity
 public class Jogadas {
     @ManyToOne
@@ -21,8 +20,6 @@ public class Jogadas {
     public Jogadas() {
     }
 
-    
-
     public Long getIdJogada() {
         return idJogada;
     }
@@ -30,7 +27,6 @@ public class Jogadas {
     public void setIdJogada(Long idJogada) {
         this.idJogada = idJogada;
     }
-
 
     public int getNumAcertosJogada() {
         return numAcertosJogada;
@@ -48,27 +44,14 @@ public class Jogadas {
         this.numErroJogada = numErroJogada;
     }
 
-
-
     public void setIdUsuarios(Long idUsuarios) {
     }
-
-
 
     public Usuario getUsuario() {
         return usuario;
     }
 
-
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    
-    
-
-    // public void mostrarPerguntas(DatabasePergunta tabela) {
-
-    // }    
 }

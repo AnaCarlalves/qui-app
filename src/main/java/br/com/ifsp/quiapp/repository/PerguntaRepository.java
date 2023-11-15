@@ -7,4 +7,3 @@ import br.com.ifsp.quiapp.model.Pergunta;
 public interface PerguntaRepository extends CrudRepository<Pergunta, Long> {
 
 }
-

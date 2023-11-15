@@ -10,5 +10,4 @@ public class QuiAppApplication {
 		DatabasePergunta.init();
 		SpringApplication.run(QuiAppApplication.class, args);
 	}
-
 }

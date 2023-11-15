@@ -7,7 +7,6 @@ import br.com.ifsp.quiapp.model.Usuario;
 public class DatabaseUsuario {
     private static ArrayList<Usuario> bancoUsuarios;
 
-
     public DatabaseUsuario() {
         bancoUsuarios = new ArrayList<>();
     }
@@ -20,7 +19,6 @@ public class DatabaseUsuario {
     public static void addUsuario(Usuario novo){
         bancoUsuarios.add(novo);
     }
-
 
     public static void removerUsuario(Usuario usuario) {
         bancoUsuarios.remove(usuario);

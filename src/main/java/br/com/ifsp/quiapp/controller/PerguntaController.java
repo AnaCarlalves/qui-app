@@ -29,7 +29,8 @@ public class PerguntaController {
     }
 
     // Imprime na tela todas as Pergutas do BDD
-    @GetMapping("/app/quiapp/pergunta")
+    // mudar esse caminh depois
+    @GetMapping("/app/quiapp/recupera/recuperaTabela")
     public Iterable<Pergunta> imprimirPergintas() {
         return perguntaRepository.findAll();
     }
