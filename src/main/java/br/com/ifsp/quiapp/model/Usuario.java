@@ -19,7 +19,8 @@ public class Usuario  implements Historico{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuarios;
-    private String nome;
+    private String username;
+    private String password;
     private int acertosTotais;
     private int errosTotais;
     private String tipo;
@@ -28,8 +29,8 @@ public class Usuario  implements Historico{
     public Usuario() {
     }
 
-    public Usuario(String nome) {
-        this.nome = nome;
+    public Usuario(String username) {
+        this.username = username;
     }
 
         public Usuario(int acertosTotais, int errosTotais) {
@@ -37,15 +38,15 @@ public class Usuario  implements Historico{
         this.errosTotais = errosTotais;
     }
 
-    public Usuario(String nome, int acertosTotais, int errosTotais) {
-        this.nome = nome;
+    public Usuario(String username, int acertosTotais, int errosTotais) {
+        this.username = username;
         this.acertosTotais = acertosTotais;
         this.errosTotais = errosTotais;
     }
 
     
-    public Usuario(String nome, String tipo) {
-        this.nome = nome;
+    public Usuario(String username, String tipo) {
+        this.username = username;
         this.tipo = tipo;
     }
 
@@ -69,12 +70,12 @@ public class Usuario  implements Historico{
         this.tipo = tipo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsername(String nome) {
+        this.username = username;
     }
 
     public int getAcertosTotais() {
@@ -130,6 +131,14 @@ public class Usuario  implements Historico{
 
         this.acertosTotais = acertos;
         this.errosTotais = erros;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
