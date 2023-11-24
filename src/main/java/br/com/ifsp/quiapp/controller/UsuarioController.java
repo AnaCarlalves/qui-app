@@ -38,18 +38,18 @@ public class UsuarioController {
     
     
     //botar um 'if' para verificar se é professor
-    // @PostMapping("/api/quiapp/cadastro/cadastroProfessor")
-    // public String addProfessor(@RequestBody Usuario novo){
-    //     novo.setPassword(
-    //         passwordEncoder.encode(novo.getPassword())
-    //     );
-    //     Usuario usuarioCriado = usuarioRepository.save(novo);
+    @PostMapping("/api/quiapp/cadastro/cadastroProfessor")
+    public String addProfessor(@RequestBody Usuario novo){
+        novo.setPassword(
+            passwordEncoder.encode(novo.getPassword())
+        );
+        Usuario usuarioCriado = usuarioRepository.save(novo);
 
-    //     if(usuarioCriado != null)
-    //         return "professor criado com sucesso!";        
+        if(usuarioCriado != null && usuarioCriado.getTipo().equals("professor"))
+            return "professor criado com sucesso!";        
         
-    //     return "Erro ao criar professor";
-    // }
+        return "Erro ao criar professor";
+    }
 
     @DeleteMapping("/api/quiapp/delete/deleteCadastroUsuario")
     public ResponseEntity<String> delCadastroUsuario(@RequestBody Usuario usuario){
